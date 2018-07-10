@@ -48,3 +48,5 @@ var FEATURES = [
     ]
   }
 ];
+
+module.exports = FEATURES;
