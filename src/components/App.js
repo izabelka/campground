@@ -8,26 +8,39 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { features: FEATURES };
+    this.state = {
+      features: FEATURES
+    };
   }
 
-  renderFeatures = () => {
-    return (
-      this.state.features.map((feat, index) => (
-        <Feature
-          key={index}
-          title={feat.title}
-          presence={feat.presence}
-          hasSubfeatures={feat.subfeatures && feat.subfeatures.length > 0}/>
-      ))
-    );
+  listFeatures = (features) => {
+    let listSubfeatures = (subfeatures) => {
+      if (subfeatures && subfeatures.length > 0) {
+        return (
+          <FeaturesWrapper
+            subfeature>
+            {this.listFeatures(subfeatures) }
+          </FeaturesWrapper>
+        )
+      }
+    }
+
+    return features.map((feat, index) => (
+      <Feature
+        key={ index }
+        title={ feat.title }
+        presence={feat.presence}
+        hasSubfeatures={feat.subfeatures && feat.subfeatures.length > 0}>
+          {listSubfeatures(feat.subfeatures)}
+      </Feature>
+    ))
   }
+
   render() {
-    console.log(FEATURES)
     return (
       <Wrapper>
         <FeaturesWrapper>
-          {this.renderFeatures()}
+          {this.listFeatures(this.state.features)}
         </FeaturesWrapper>
       </Wrapper>
     );
@@ -35,19 +48,13 @@ class App extends Component {
 }
 
 const Wrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
   display: flex;
   align-items: flex-start;
-  justify-content: center;
+  padding: 34px;
 `;
 
 const FeaturesWrapper = styled.ul`
-  margin-top: 10em;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+  margin-left: ${({ subfeature }) => subfeature ? 34 : 0}px;
 `;
 
 export default App;
