@@ -18,4 +18,6 @@ as a `<ul>` list.
 - If a feature is present at the campground it is displayed in green with '✅' icon,
 if it is not present, it is displayed in red with '❌' icon.
 - If a feature has sub-features, clicking on that feature reveals its sub-features, and so on.
-- Live demo: [https://izabelka.github.io/campground](https://izabelka.github.io/campground)
+
+## Live Demo
+[https://izabelka.github.io/campground](https://izabelka.github.io/campground)
