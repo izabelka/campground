@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 
 class Feature extends Component {
@@ -46,11 +46,24 @@ Feature.propTypes = {
   hasSubfeatures: PropTypes.bool,
 };
 
+const fadeInLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
 const FeatureWrapper = styled.li`
   color: ${({ presence }) => presence ? '#00b500' : '#ee0000'};
   &:not(:last-of-type) {
     margin-bottom: 16px;
   }
+  animation: ${fadeInLeft} .3s linear;
 `;
 
 const FeatureContent = styled.div`
@@ -75,7 +88,7 @@ const FeatureContent = styled.div`
 `;
 
 const FeatureIcon = styled.span`
-  margin-right: 4px;
+  margin-right: 6px;
 `;
 
 const FeatureTitle = styled.span``;
